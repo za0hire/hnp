@@ -1,0 +1,31 @@
+	mov ax, bx
+	and ax, 0x0f ; Unteres Nibble Filtern
+	push ax ; Erste Zahl auf Stack ablegen
+	
+	mov cl, 4
+	mov ax, bx ; Ergebnis zurück auf ax
+	shr ax, cl ; Verschieben um ein Nibble
+	push ax ; Zweite Zahl auf Stack ablegen
+
+	mov cl, 8
+	mov ax, bx ; Ergebnis zurück auf ax
+	shr ax, cl ; Verschieben um ein Nibble
+	push ax ; Dritte Zahl auf Stack ablegen
+
+	pop ax ; erste Zahl vom Stack
+	mov bx, CHARS ; Startadresse von Chars
+	add bx, ax ; Richtige Ziffer wählen
+	mov al, [bx] ; 
+	out 9eh, al ; Ausgabe am 7-SEG Display
+
+	pop ax ; zweite Zahl vom Stack
+	mov bx, CHARS ; Startadresse von Chars
+	add bx, ax ; Richtige Ziffer wählen
+	mov al, [bx] ; 
+	out 9ch, al ; Ausgabe am 7-SEG Display
+
+	pop ax ; dritte Zahl vom Stack
+	mov bx, CHARS ; Startadresse von Chars
+	add bx, ax ; Richtige Ziffer wählen
+	mov al, [bx] ; 
+	out 9ah, al ; Ausgabe am 7-SEG Display
